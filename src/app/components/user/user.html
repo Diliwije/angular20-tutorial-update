@@ -1,0 +1,115 @@
+<p>user works!</p>
+
+<div class="row">
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-success">
+                User List
+            </div>
+            <div class="card-body table table-bordered ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>emailId</th>
+                            <th>fullName</th>
+                            <th>mobileNo</th>
+                            <th>password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of userList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.mobileNo}}</td>
+                            <td>{{item.password}}</td>
+
+                            <td>
+                                <button class="btn btn-sm btn-primary" (click)="onEdit(item)">Edit</button>
+                                <button class="btn btn-sm btn-danger" (click)="onDelete(item.userId)">Delete</button>
+                            </td>
+
+                        </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-success">
+                User List
+            </div>
+            <div class="card-body">
+
+                <form #formValue="ngForm">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="emailId">Email Id</label>
+                        <input type="text" name="emailId" required #email="ngModel" class="form-control" id="emailId" [(ngModel)]="userObj.emailId">
+
+                        <div class="text-danger">
+                            @if (email.errors?.['required']) {
+                                Email is required
+                            }
+                        
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <label for="fullName">Full Name</label>
+                        <input type="text"  class="form-control" name="fullName" id="fullName" [(ngModel)]="userObj.fullName">
+                    </div>
+
+                    
+                    <div class="col-6">
+                        <label for="password">Password</label>
+                        <input type="password" required  name="password" minlength="6" #password="ngModel" class="form-control" id="password" [(ngModel)]="userObj.password">
+                    </div>
+
+                    @if (password.touched ) {
+                           <div class="text-danger">
+
+                                @if (password.errors?.['required']) {
+                           <span>Password is required</span> 
+                        }
+                      
+                        @if(password.errors?.['minlength']) {
+                            <span>Password should be minimum 6 characters</span>
+                        }
+
+                      
+                    </div>
+                    }
+                 
+
+                    <div class="col-6">
+                        <label for="mobileNo">Mobile No</label>
+                        <input type="text" class="form-control" name="mobileNo" id="mobileNo" [(ngModel)]="userObj.mobileNo">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button class="btn btn-secondary" (click)="onReset()">Reset User</button>
+
+
+                        @if (userObj.userId==0) {
+                      <button class="btn btn-primary" [disabled]="formValue.invalid" (click)="onSaveUser()">Add User</button>
+                        }
+                        @else {
+                            {{userObj.userId}}
+                <button class="btn btn-success" (click)="onUpdateUser()">Update User</button>
+
+                        }
+                
+
+                    </div>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>

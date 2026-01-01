@@ -1,0 +1,34 @@
+<p>layout works!</p>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid" bis_skin_checked="1">
+    <a class="navbar-brand docs-creator" href="javascript:void(0)">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar" bis_skin_checked="1">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active docs-creator" routerLink="admin">Admin</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link docs-creator" routerLink="'data-binding">Data-binding</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link docs-creator" routerLink="signal">Signal</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+
+        @if (loggedUserName=='') {
+        <button class="btn btn-primary" routerLink="login" type="button">Login</button>
+
+        }@else{
+          
+         <button class="btn btn-warning" type="button">{{loggedUserName}}</button>
+        <button class="btn btn-primary" (click)="onLogOut()" type="button">LogOut</button>
+        }
+      </form>
+    </div>
+  </div>
+</nav> 
+<router-outlet></router-outlet>

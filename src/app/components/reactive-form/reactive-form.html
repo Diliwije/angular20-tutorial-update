@@ -1,0 +1,98 @@
+<p>user works!</p>
+
+<div class="row">
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-success">
+                User List
+            </div>
+            <div class="card-body table table-bordered ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>emailId</th>
+                            <th>fullName</th>
+                            <th>mobileNo</th>
+                            <th>password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of userList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.mobileNo}}</td>
+                            <td>{{item.password}}</td>
+
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+
+                        </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-success">
+                User List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+
+
+                        <form [formGroup]="userForm">
+
+
+                            <label for="emailId">Email Id</label>
+                            <input type="text" class="form-control" id="emailId" formControlName="emailId">
+
+                            <div class="col-6">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" formControlName="fullName">
+                            </div>
+                            <div class="col-6">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" formControlName="password">
+                         @if (userForm.controls['password'].touched ) {
+                           <div class="text-danger">
+                        @if (userForm.controls['password'].errors?.['required']) {
+                           <span>Password is required</span> 
+                        }
+                        @if(userForm.controls['password'].errors?.['minlength']) {
+                            <span>Password should be minimum 6 characters</span>
+                        }
+                    </div>
+                    }
+                            </div>
+                            <div class="col-6">
+                                <label for="mobileNo">Mobile No</label>
+                                <input type="number" class="form-control" id="mobileNo" formControlName="mobileNo">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button class="btn btn-secondary">Reset User</button>
+                                =
+                            </div>
+
+                            <button class="btn btn-primary" [disabled]="userForm.invalid">Add User</button>
+
+                            <button class="btn btn-success">Update User</button>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

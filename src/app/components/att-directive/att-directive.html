@@ -1,0 +1,28 @@
+<h2>att-directive works!</h2>
+
+<div class="row">
+    <div class="col-3">
+        <div class="p-3 " [ngClass]="div1Style()">
+            This div's background color changes based on the button clicked.
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="p-3 " [ngStyle]="{'background-color': div2Style ? 'blue' : 'purple'}">
+            This div's background color changes based on the button clicked.
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-3">
+        <div >
+            <button class="btn btn-success" (click)="bgchange('bg-success')">Change color to Green</button>
+           <button class="btn btn-danger" (click)="bgchange('bg-danger')">Change color to Red</button>
+        </div>
+
+                   <button class="btn btn-primary" (click)="setBgstyle()">Change css style</button>
+
+    </div>
+</div>

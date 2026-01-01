@@ -1,0 +1,78 @@
+<p>control-flow works!</p>
+<table>
+
+    <tr>
+        
+        <td>@if (isParaVisible==true) {
+            <p>Paragraph is visible</p>    
+        }@else {
+            <p>Paragraph is not visible</p>
+        }
+    
+    </td>
+    </tr>
+    <tr>
+        <td><button class="btn btn-success" (click)="showP()">Show</button></td>
+        <td><button (click)="hideP()">Hide</button></td>
+    </tr>
+    <tr>
+        <td>
+            @if(startMonthName=='January'){
+                <p>Month is January</p>
+            }@else if(startMonthName=='February'){
+                <p>Month is February</p>
+            }@else if(startMonthName=='March'){
+                <p>Month is March</p>
+            }@else{
+                <p>Month is not January, February or March</p>
+            }
+
+        </td>
+    </tr>
+
+    <tr>
+        <td><input type="text" [(ngModel)]="startMonthName"></td>
+    </tr>
+
+    <tr>
+        <td>
+            <ul>
+                @for ( list of cityList; track $index) {
+                    <li>{{list}}</li>
+                }
+            </ul>
+        </td>
+
+        <td>
+            <select name="" id="">
+                @for ( list of cityList; track $index) {
+                    <option value="{{list}}">{{list}}</option>
+                }
+            </select>
+        </td>
+    </tr>
+</table>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>isActive</th>
+    </tr>
+
+    @for ( student of studentList; track $index) {
+        <tr>
+            <td>{{$index}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.course}}</td>
+            @if(student.isActive==true){
+                <td style="color:green">Active</td>
+            }@else{
+                <td style="color:red">Inactive</td>
+            }
+            
+        </tr>
+    }
