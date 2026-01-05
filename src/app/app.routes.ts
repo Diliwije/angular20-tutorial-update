@@ -11,75 +11,27 @@ import { PipeEx } from './components/pipe-ex/pipe-ex';
 import { ResourceApi } from './components/resource-api/resource-api';
 import { Login } from './components/login/login';
 import { Layout } from './components/layout/layout';
+import { SubBehReplay } from './rxjs/sub-beh-replay/sub-beh-replay';
 
 export const routes: Routes = [
     {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'login'
+        path: '', pathMatch: 'full', redirectTo: 'login'
     },
-
+    { path: 'login', component: Login, },
     {
-        path: 'login',
-        component: Login,
-       
+        path: '', component: Layout, children: [{ path: 'admin', component: Admin },
+        { path: 'control-flow', component: ControlFlow },
+        { path: 'data-binding', component: DataBinding },
+        { path: 'signal-ex', component: SignalEx },
+        { path: 'attr-directive', component: AttDirective },
+        { path: 'get-api', component: GetApi },
+        { path: 'user', component: User },
+        { path: 'reactive-form', component: ReactiveForm },
+        { path: 'pipe-ex', component: PipeEx },
+        { path: 'resource-api', component: ResourceApi }]
     },
     {
-        path: '',
-        component: Layout,
-         children: [
-
-            {
-                path: 'admin',
-                component: Admin
-            },
-
-            {
-                path: 'control-flow',
-                component: ControlFlow
-            },
-
-            {
-                path: 'data-binding',
-                component: DataBinding
-            },
-
-            {
-                path: 'signal-ex',
-                component: SignalEx
-            }
-            ,
-            {
-                path: 'attr-directive',
-                component: AttDirective
-            }
-            ,
-            {
-                path: 'get-api',
-                component: GetApi
-
-            },
-
-            {
-                path: 'user',
-                component: User
-            }
-            ,
-            {
-                path: 'reactive-form',
-                component: ReactiveForm
-            }
-            ,
-            {
-                path: 'pipe-ex',
-                component: PipeEx,
-            },
-
-
-            {
-                path: 'resource-api',
-                component: ResourceApi
-            }]
+        path: 'sub-beh-replay', component: SubBehReplay
     }
 
 
