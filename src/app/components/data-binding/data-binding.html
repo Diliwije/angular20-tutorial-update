@@ -1,62 +1,64 @@
-<h1><p>Data-binding works!</p></h1>
+<input type="text" [(ngModel)]="userid" placeholder="Enter your Id">
+
+<button (click)="getUser()">Get User</button>
+
 <table style="width: 100%;">
+    <tr>
+        <td>
+            <h2>Interpolation</h2>
+            <p>Course Name: {{courseName}}</p>
+        </td>
 
-<tr>
-    <td>
-        <h2>Interpolation</h2>
-        <p>Course Name: {{courseName}}</p>
-    </td>
+        <td>
+            <h2>Interpolation</h2>
+            <input type="text" value="{{color}}" />
+        </td>
 
-    <td>
-        <h2>Interpolation</h2>
-        <input type="text" value="{{color}}"/>
-    </td>
+        <td>
+            <h2>Property Binding</h2>
+            <p>Product Price: <input type="text" [value]="productprice" /></p>
+        </td>
 
-    <td>
-        <h2>Property Binding</h2>
-        <p>Product Price: <input type="text" [value]="productprice"/></p>
-    </td>
+    </tr>
 
-</tr>
+    <tr>
+        <td>
+            <input [type]="myClassName" [value]="color">
+        </td>
 
-<tr>
-    <td>
-        <input [type]="myClassName" [value]="color">
-    </td>
+        <td>
+            <input type="text" [maxLength]="maxLength" [minLength]="minLength" [value]="courseName">
+        </td>
+    </tr>
 
-    <td>
-        <input type="text" [maxLength]="maxLength" [minLength]="minLength" [value]="courseName">
-    </td>
-</tr>
+    <h1>Event Binding</h1>
 
-<h1>Event Binding</h1>
+    <tr>
+        <td>
+            <button class="btn btn-success" (click)="onClick()">Click Me!</button>
+        </td>
 
-<tr>
-    <td>
-        <button class="btn btn-success" (click)="onClick()">Click Me!</button>
-    </td>
+        <td>
+            <button (click)="changeCourseName()">changeCourseName</button>
+        </td>
+    </tr>
 
-    <td>
-        <button (click)="changeCourseName()">changeCourseName</button>
-    </td>
-</tr>
+    <h1>ngModels[Two way Data binding]</h1>
 
-<h1>ngModels[Two way Data binding]</h1>
+    <tr>
+        <td>
+            <input type="text" [(ngModel)]="courseName">
+            <p>Course Name: {{courseName}}</p>
+        </td>
+    </tr>
 
-<tr>
-    <td>
-        <input type="text" [(ngModel)]="courseName">
-        <p>Course Name: {{courseName}}</p>
-    </td>
-</tr>
-
-<tr>
-    <select [(ngModel)]="color">
-        <option value="red" >Red</option>
-        <option value="green" >green</option>
-        <option value="blue">Blue</option>
-    </select>
-</tr>
+    <tr>
+        <select [(ngModel)]="color">
+            <option value="red">Red</option>
+            <option value="green">green</option>
+            <option value="blue">Blue</option>
+        </select>
+    </tr>
 
 
 </table>

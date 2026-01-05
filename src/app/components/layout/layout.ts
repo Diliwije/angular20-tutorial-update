@@ -1,44 +1,52 @@
 import { Component, inject } from '@angular/core';
 import { Master } from '../../services/master';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterLink,RouterOutlet],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.css'
 })
 export class Layout {
 
-  router=inject(Router);
+  userService = inject(User)
 
-  loggedUserName:string='';
+  router = inject(Router);
 
-    constructor(private masterService:Master){
+  loggedUserName: string = '';
 
+  constructor(private masterService: Master) {
+
+    this.readLogged();
+    this.masterService.onLogin.subscribe((res => {
       this.readLogged();
-      this.masterService.onLogin.subscribe((res =>{
-        this.readLogged();
-      }))
-      
+    }))
+
+  }
+
+
+  readLogged() {
+    const localData = localStorage.getItem("Angular20");
+
+    if (localData != null) {
+      this.loggedUserName = localData;
     }
+  }
 
+  onLogOut() {
+    localStorage.removeItem("Angular20");
+    // this.readLogged();
+    this.loggedUserName = '';
+    // this.masterService.onLogin.next(false);
+    window.confirm("Are you sure to logout?");
+    this.router.navigateByUrl('/')
+  }
 
-    readLogged()
-{
-      const localData=localStorage.getItem("Angular20");
+  onRoleChange(event: any) {
+    this.userService.roleBehaviour$.next(event.target.value);
+    this.userService.roleSub$.next(event.target.value);
+  }
 
-      if(localData!=null){
-        this.loggedUserName=localData;
-      }
-}
-
-onLogOut(){
-  localStorage.removeItem("Angular20");
-  // this.readLogged();
-  this.loggedUserName='';
-  // this.masterService.onLogin.next(false);
-  window.confirm("Are you sure to logout?");
-  this.router.navigateByUrl('/')
-}
 }

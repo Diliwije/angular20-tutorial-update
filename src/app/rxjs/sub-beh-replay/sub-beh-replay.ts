@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-sub-beh-replay',
@@ -8,6 +9,8 @@ import { Subject } from 'rxjs';
   styleUrl: './sub-beh-replay.css'
 })
 export class SubBehReplay implements OnInit {
+
+  userService = inject(User)
 
   student$ = new Subject();
 
@@ -24,6 +27,7 @@ export class SubBehReplay implements OnInit {
       this.student$.next("Student 1");
       this.rollNo$.next(10);
       this.takeTill.next();
+      this.userService.courseDuration$.next("This is behavourSubject 6 Month2");
     }, 4000)
   }
   ngOnInit(): void {
@@ -32,6 +36,10 @@ export class SubBehReplay implements OnInit {
       console.log(res);
     })
     this.rollNo$.subscribe((res: any) => {
+      console.log(res);
+    })
+
+    this.userService.courseDuration$.subscribe((res: any) => {
       console.log(res);
     })
   }

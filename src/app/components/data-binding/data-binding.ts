@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-data-binding',
@@ -9,11 +10,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class DataBinding {
 
+
+  userService = inject(User)
   courseName: string = "Angular";
 
   productprice: number = 1000;
 
-    maxLength: number = 10;
+  userid: number = 0;
+
+  maxLength: number = 10;
 
   minLength: number = 5;
 
@@ -21,7 +26,21 @@ export class DataBinding {
 
   color: string = "red";
 
-  constructor() { }
+  constructor() {
+    this.userService.roleBehaviour$.subscribe((res: any) => {
+      console.log(res);
+    })
+    this.userService.roleSub$.subscribe((res: any) => {
+      console.log(res);
+    })
+
+  }
+
+  getUser() {
+    this.userService.getUserById(this.userid).subscribe((res: any) => {
+      console.log(res);
+    })
+  }
 
   onClick() {
     alert("Button Clicked");
@@ -32,7 +51,7 @@ export class DataBinding {
     if (this.courseName == "React")
       this.courseName = "Angular";
     else
-    this.courseName = "React";
+      this.courseName = "React";
   }
 
 

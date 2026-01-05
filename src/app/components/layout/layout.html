@@ -1,4 +1,3 @@
-<p>layout works!</p>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid" bis_skin_checked="1">
     <a class="navbar-brand docs-creator" href="javascript:void(0)">Logo</a>
@@ -11,7 +10,7 @@
           <a class="nav-link active docs-creator" routerLink="admin">Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link docs-creator" routerLink="'data-binding">Data-binding</a>
+          <a class="nav-link docs-creator" routerLink="data-binding">Data-binding</a>
         </li>
         <li class="nav-item">
           <a class="nav-link docs-creator" routerLink="signal">Signal</a>
@@ -20,7 +19,14 @@
           <a class="nav-link docs-creator" routerLink="sub-beh-replay">Sub-Beh-Replay</a>
         </li>
       </ul>
+
       <form class="d-flex">
+        <select name="" id="" (change)="onRoleChange($event)">
+          <option value="Guest">Guest</option>
+          <option value="Admin">Admin</option>
+          <option value="SuperAdmin">Super Admin</option>
+        </select>
+
 
         @if (loggedUserName=='') {
         <button class="btn btn-primary" routerLink="login" type="button">Login</button>
